@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 class SecondBloc {
-  Stream<bool> _outputs = new Stream.empty();
+  PublishSubject<bool> _outputs = PublishSubject<bool>();
 
   PublishSubject<bool> _inputs = PublishSubject<bool>();
 
   SecondBloc() {
-    _outputs = _inputs.asyncMap((_) => true).asBroadcastStream();
+    _outputs.addStream(_inputs.stream
+        .asyncMap((_) => Future.delayed(Duration(seconds: 3), () => true))
+        .asBroadcastStream());
   }
 
   Stream<bool> get out => _outputs;
