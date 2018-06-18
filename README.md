@@ -1,4 +1,8 @@
-#sample project showing my error
+Edit:
+
+thanks to @jmolins this bug is fixed. Problem was, like I thought, BLoC object holding reference to old screen, after unsubscribing to it bug is fixed.
+
+# Sample project showing my error
 
 output:
 
